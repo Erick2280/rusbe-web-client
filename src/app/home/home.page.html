@@ -1,14 +1,44 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Ionic Blank
+      <ion-img class="header-logo" src="/assets/light-logo.svg"></ion-img>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+      <h2>Bom dia, <b>Erick Almeida</b>!</h2>
+      <p>Hoje, quarta-feira, 14 de agosto, o RU está disponível para desjejum, almoço e jantar e está aberto agora até as 14h00.</p>
   </div>
+
+  <ion-item>
+    <ion-label>Status atual</ion-label>
+    <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Selecione um">
+      <ion-select-option value="not">Não irei</ion-select-option>
+      <ion-select-option value="maybe">Talvez irei</ion-select-option>
+      <ion-select-option value="will">Irei</ion-select-option>
+      <ion-select-option value="queue">Na fila</ion-select-option>
+      <ion-select-option value="inside">Estou</ion-select-option>
+      <ion-select-option value="went">Já fui</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Hoje no RU</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Keep close to Nature's heart... and break clear away, once in awhile,
+      and climb a mountain or spend a week in the woods. Wash your spirit clean.
+    </ion-card-content>
+  </ion-card>
+
+  <div class="hero-top">
+    <h1>neighborRUd</h1>
+    Sicranésio
+    Milanésio
+  </div>
+
 </ion-content>

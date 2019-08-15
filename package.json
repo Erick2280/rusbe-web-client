@@ -1,8 +1,8 @@
 {
-  "name": "rusbe",
+  "name": "rusbe-client",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Erick Almeida",
+  "homepage": "https://rusbe.riso.dev/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
