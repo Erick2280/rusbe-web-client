@@ -23,12 +23,12 @@
   <ion-item>
     <ion-label>Status atual</ion-label>
     <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Selecione um">
-      <ion-select-option value="not">Não irei</ion-select-option>
-      <ion-select-option value="maybe">Talvez irei</ion-select-option>
-      <ion-select-option value="will">Irei</ion-select-option>
-      <ion-select-option value="queue">Na fila</ion-select-option>
-      <ion-select-option value="inside">Estou</ion-select-option>
-      <ion-select-option value="went">Já fui</ion-select-option>
+      <ion-select-option value="not">🔴 Não irei</ion-select-option>
+      <ion-select-option value="maybe">🟡 Talvez irei</ion-select-option>
+      <ion-select-option value="will">🟢 Irei</ion-select-option>
+      <ion-select-option value="queue">🙄 Na fila</ion-select-option>
+      <ion-select-option value="inside">🍽 Estou</ion-select-option>
+      <ion-select-option value="went">✅ Já fui</ion-select-option>
     </ion-select>
   </ion-item>
 
@@ -40,13 +40,16 @@
     <ion-card-content>
       Keep close to Nature's heart... and break clear away, once in awhile,
       and climb a mountain or spend a week in the woods. Wash your spirit clean.
+      <ion-button color="danger" (click)="test()">Danger</ion-button>
     </ion-card-content>
   </ion-card>
 
-  <div class="hero-top">
+  <div>
     <h1>neighborRUd</h1>
     Sicranésio
     Milanésio
   </div>
+
+  Feito com ❤ por <a href="https://riso.dev">Erick Almeida</a>.
 
 </ion-content>

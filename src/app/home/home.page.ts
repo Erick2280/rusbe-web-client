@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RuInfoService } from '../ru-info.service'
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,13 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private ruInfo: RuInfoService) {}
+
+
+  test() {
+  console.log(this.ruInfo.getTimeData());
+  this.ruInfo.determineRuStatus();
+  }
+
 
 }
