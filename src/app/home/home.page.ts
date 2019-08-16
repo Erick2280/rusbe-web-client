@@ -13,7 +13,7 @@ export class HomePage {
 
   test() {
   console.log(this.ruInfo.getTimeData());
-  this.ruInfo.determineRuStatus();
+  // this.ruInfo.determineRuStatus(this.ruInfo.getTimeData());
   }
 
 
