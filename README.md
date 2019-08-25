@@ -46,6 +46,7 @@ O projeto preparado para produção estará disponível no diretório `/www/`.
 
 - Analytics
 - Notificações
+- Esta semana no RU
 - neighborRUd
 - Rusbadges
 - Rusbike
