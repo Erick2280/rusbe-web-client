@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>
-      <ion-img class="header-logo" src="/assets/light-logo.svg"></ion-img>
+      <ion-img class="header-logo" src="/assets/light-logo.svg" alt="Rusbé"></ion-img>
     </ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/settings" routerDirection="forward">
@@ -65,6 +65,7 @@
     
   </div>
   
+  <!--
   <ion-item *ngIf="hiddenResource">
     <ion-label>Status atual</ion-label>
     <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Selecione um">
@@ -76,9 +77,10 @@
       <ion-select-option value="went">✅ Já fui</ion-select-option>
     </ion-select>
   </ion-item>
-  
+  -->
+
   <div>
-    <ion-img class="today-logo" padding src="/assets/today-at-ru.svg"></ion-img>
+    <ion-img class="today-logo" padding src="/assets/today-at-ru.svg" alt="Hoje no RU"></ion-img>
     
     <ion-slides pager="true">
       
