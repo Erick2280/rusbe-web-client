@@ -18,7 +18,13 @@ export class HomePage implements OnInit {
   firebaseDataLoaded = false;
   hiddenResource = false;
   timeData: any;
-  virtusData: any;
+  virtusData: any = {
+    data: {
+      desjejumParsed: [],
+      almocoParsed: [],
+      jantarParsed: []
+    }
+  };
   firebaseData: any;
 
   ngOnInit() {
@@ -28,7 +34,7 @@ export class HomePage implements OnInit {
     this.ruInfo.getVirtusData(this.ruInfo.getTimeData()).then((data) => {
     this.virtusData = data;
     console.log('front received virtus data');
-    if (this.virtusData.data) {
+    if (this.virtusData.data == null) {
       this.virtusData.data.desjejumParsed = this.virtusData.data.desjejum.split(',');
       this.virtusData.data.almocoParsed = this.virtusData.data.almoco.split(',');
       this.virtusData.data.jantar = this.virtusData.data.jantar.split(',');

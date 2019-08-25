@@ -1,12 +1,9 @@
 .header-logo {
-    height: 2em;
-    display: inline-block;
-    vertical-align: middle;
-    padding-right: 15px;
+    width: 4em;
 }
 
 .top-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../../assets/hero2.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../../assets/hero.jpg);
     background-size: 100% auto;
     background-position: center;
     color: var(--ion-color-primary-contrast);
@@ -27,7 +24,9 @@
     color: white;
 }
 
-
+strong {
+    font-weight: 600;
+}
 
 .today-logo {
     height: 5em;
