@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/home" text="Voltar"></ion-back-button>
+      </ion-buttons>
+    <ion-title>
+        Configurações
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+          <ion-label>Limpar dados da API do RU</ion-label>
+          <ion-button fill="outline" slot="end" (click)="clearVirtusData()">Limpar</ion-button>
+        </ion-item>
+      </ion-list>
+
+      <ion-card>
+          <ion-card-header>
+              <ion-card-title>Sobre</ion-card-title>
+              <ion-card-subtitle>Rusbé 1.0.0</ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              Feito com ❤ por <a href="https://riso.dev">Erick Almeida</a>. <br />
+              Imagem de capa baseada na imagem por <a href="https://unsplash.com/@thoughtcatalog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ThoughtCatalog</a> no <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>.
+          
+              </ion-card-content>
+
+          <ion-item>
+            <ion-icon name="logo-github" slot="start"></ion-icon>
+            <ion-label>Github</ion-label>
+            <ion-button fill="outline" slot="end" href="https://github.com/erick2280/rusbe-web-client">Ver</ion-button>
+          </ion-item>
+        
+        </ion-card>
+
+ </ion-content>

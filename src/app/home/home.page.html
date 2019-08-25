@@ -3,24 +3,70 @@
     <ion-title>
       <ion-img class="header-logo" src="/assets/light-logo.svg"></ion-img>
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/settings" routerDirection="forward">
+        <ion-icon slot="icon-only" name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-padding top-hero">
+    <div *ngIf="!timeDataLoaded">
       <h2>
-        Bom dia, <b>Erick Almeida</b>!
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
       </h2>
-      <p>Hoje, <strong>quarta-feira, 14 de agosto</strong>, o RU está disponível para <strong>desjejum, almoço e jantar</strong> e está <strong>aberto agora</strong> até às 14h00.</p>
-  
-      <ion-chip>
-        <ion-icon name="checkmark-circle"></ion-icon>
+      <p>
+        <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </p>
+    </div>  
+    
+    <div *ngIf="timeDataLoaded">
+      <h2>
+        Olá!
+      </h2>
+      <p>Hoje, <strong>{{ timeData.weekday }}, {{ timeData.daySentence }}</strong>, o RU <span *ngIf="timeData.operates">opera para <strong>desjejum, almoço e jantar</strong> e está <strong *ngIf="timeData.isOpen">aberto agora</strong><strong *ngIf="!timeData.isOpen">fechado agora</strong><strong *ngIf="timeData.nextMeaningfulEvent !== 'none'"> até às {{ timeData.nextMeaningfulEvent.format('LT').replace(":","h") }}</strong></span><span *ngIf="!timeData.operates">não opera</span>.</p>
+
+      <ion-chip class="red-chip" *ngIf="!timeData.operates">
+          <ion-icon color="white" name="remove-circle"></ion-icon>
+          <ion-label>Não opera hoje</ion-label>
+      </ion-chip>
+      <ion-chip class="blue-chip" *ngIf="timeData.isOpen">
+        <ion-icon color="white" name="checkmark-circle"></ion-icon>
         <ion-label>Aberto agora</ion-label>
       </ion-chip>
-
+      <ion-chip class="red-chip" *ngIf="timeData.operates && !timeData.isOpen">
+          <ion-icon color="white" name="close-circle"></ion-icon>
+          <ion-label>Fechado agora</ion-label>
+      </ion-chip>
+      <ion-chip class="yellow-chip" *ngIf="timeData.operates && timeData.isOpen">
+          <ion-icon color="black" name="timer"></ion-icon>
+          <ion-label>Fecha {{ timeData.timeUntilNextMeaningfulEvent }}</ion-label>
+      </ion-chip>
+      <ion-chip class="yellow-chip" *ngIf="timeData.operates && !timeData.isOpen">
+          <ion-icon color="black" name="hourglass"></ion-icon>
+          <ion-label>Abre {{ timeData.timeUntilNextMeaningfulEvent }}</ion-label>
+      </ion-chip>
+      <ion-chip class="blue-chip" *ngIf="timeData.isOpen && timeData.expectedOperation == 'desjejum'">
+        <ion-icon color="white" name="cafe"></ion-icon>
+        <ion-label>Desjejum</ion-label>
+      </ion-chip>
+      <ion-chip class="blue-chip" *ngIf="timeData.isOpen && timeData.expectedOperation == 'almoco'">
+          <ion-icon color="white" name="restaurant"></ion-icon>
+          <ion-label>Almoço</ion-label>
+      </ion-chip>
+      <ion-chip class="blue-chip" *ngIf="timeData.isOpen && timeData.expectedOperation == 'jantar'">
+          <ion-icon color="white" name="moon"></ion-icon>
+          <ion-label>Jantar</ion-label>
+      </ion-chip>
+      
+    </div>
+    
   </div>
-
-  <ion-item>
+  
+  <ion-item *ngIf="hiddenResource">
     <ion-label>Status atual</ion-label>
     <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Selecione um">
       <ion-select-option value="not">🔴 Não irei</ion-select-option>
@@ -31,25 +77,43 @@
       <ion-select-option value="went">✅ Já fui</ion-select-option>
     </ion-select>
   </ion-item>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Hoje no RU</ion-card-title>
-    </ion-card-header>
   
-    <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
-      <ion-button color="danger" (click)="test()">Danger</ion-button>
-    </ion-card-content>
-  </ion-card>
+  <ion-img class="today-logo" padding src="/assets/today-at-ru.svg"></ion-img>
 
-  <div>
-    <h1>neighborRUd</h1>
-    Sicranésio
-    Milanésio
-  </div>
-
-  Feito com ❤ por <a href="https://riso.dev">Erick Almeida</a>.
-
+  <ion-slides pager="true">
+    
+      <ion-slide>
+        <ion-card class="today-card">
+          <ion-card-header>
+            <ion-card-subtitle>{{ timeData.day }}</ion-card-subtitle>
+            <ion-card-title>Desjejum</ion-card-title>
+          </ion-card-header>  
+          
+          <ion-card-content>
+            
+            <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+  
+          </ion-card-content>
+          
+        </ion-card>
+      </ion-slide>
+      
+      <ion-slide>
+        
+      </ion-slide>
+      
+      <ion-slide>
+        
+      </ion-slide>
+      
+    </ion-slides>
+  
+    <ion-card *ngIf="hiddenResource">
+        <ion-card-header>
+          <ion-card-title>neighborRUd</ion-card-title>
+        </ion-card-header>  
+    </ion-card>
+  
 </ion-content>

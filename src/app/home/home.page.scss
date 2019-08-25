@@ -1,8 +1,39 @@
 .header-logo {
     height: 2em;
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 15px;
 }
 
 .top-hero {
-    background-color: var(--ion-color-secondary);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../../assets/hero2.jpg);
+    background-size: 100% auto;
+    background-position: center;
     color: var(--ion-color-primary-contrast);
+}
+
+.blue-chip {
+    background-color: #1976d2;
+    color: white;
+}
+
+.yellow-chip {
+    background-color: #ffce00;
+    color: black;
+}
+
+.red-chip {
+    background-color: #cc3e3e;
+    color: white;
+}
+
+
+
+.today-logo {
+    height: 5em;
+}
+
+.today-card {
+    width: 100%;
+    margin-bottom: 32px;
 }
