@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "author": "Erick Almeida",
   "homepage": "https://rusbe.riso.dev/",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
