@@ -1,5 +1,9 @@
-.header-logo {
+.md .header-logo {
   width: 4em;
+}
+
+.ios .header-logo {
+  height: 2em;
 }
 
 .top-hero {

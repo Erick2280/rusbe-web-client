@@ -10,9 +10,11 @@ O Rusbé é uma plataforma para acompanhamento do Restaurante Universitário da 
 
 Clone o repositório para um diretório da sua preferência.
 
-Instale o Ionic e o Cordova:
+O Rusbé requer o [Node.js](https://nodejs.org) v10 ou posterior.
 
-    npm install -g ionic cordova
+Instale o Ionic:
+
+    npm install -g ionic
 
 Instale as dependências do projeto:
 
