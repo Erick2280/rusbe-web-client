@@ -26,23 +26,35 @@ export class HomePage implements OnInit {
     }
   };
   firebaseData: any;
+  slideOpts: any;
 
   ngOnInit() {
     this.timeData = this.ruInfo.getTimeData();
     this.timeDataLoaded = true;
+    this.determineSlideOpts();
     console.log(this.timeData);
     this.ruInfo.getVirtusData(this.ruInfo.getTimeData()).then((data) => {
     this.virtusData = data;
     console.log('front received virtus data');
-    if (this.virtusData.data == null) {
+    if (this.virtusData.data !== null) {
       this.virtusData.data.desjejumParsed = this.virtusData.data.desjejum.split(',');
       this.virtusData.data.almocoParsed = this.virtusData.data.almoco.split(',');
-      this.virtusData.data.jantar = this.virtusData.data.jantar.split(',');
+      this.virtusData.data.jantarParsed = this.virtusData.data.jantar.split(',');
       this.virtusDataLoaded = true;
     }
     console.log(this.virtusData);
 
     });
+  }
+
+  determineSlideOpts() {
+    if (this.timeData.expectedOperation === 'almoco') {
+      this.slideOpts = { initialSlide: 1};
+    } else if (this.timeData.expectedOperation === 'jantar') {
+      this.slideOpts = { initialSlide: 2};
+    } else {
+      this.slideOpts = { initialSlide: 0};
+    }
   }
 
 }
