@@ -44,7 +44,7 @@
         <ion-icon color="black" name="timer"></ion-icon>
         <ion-label>Fecha {{ timeData.timeUntilNextMeaningfulEvent }}</ion-label>
       </ion-chip>
-      <ion-chip class="yellow-chip" *ngIf="timeData.operates && !timeData.isOpen">
+      <ion-chip class="yellow-chip" *ngIf="timeData.operates && timeData.expectedOperation !== 'none' && !timeData.isOpen">
         <ion-icon color="black" name="hourglass"></ion-icon>
         <ion-label>Abre {{ timeData.timeUntilNextMeaningfulEvent }}</ion-label>
       </ion-chip>
@@ -165,5 +165,4 @@
       <ion-card-title>neighborRUd</ion-card-title>
     </ion-card-header>  
   </ion-card>
-  
 </ion-content>

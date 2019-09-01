@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RuInfoService } from './ru-info.service';
+import { TimeService } from './time.service';
 
-describe('RuInfoService', () => {
+describe('TimeService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: RuInfoService = TestBed.get(RuInfoService);
+    const service: TimeService = TestBed.get(TimeService);
     expect(service).toBeTruthy();
   });
 });

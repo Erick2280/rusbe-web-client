@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RuInfoService } from '../ru-info.service';
+import { VirtusService } from '../virtus.service';
 import { ToastController } from '@ionic/angular';
 
 @Component({
@@ -9,19 +9,19 @@ import { ToastController } from '@ionic/angular';
 })
 export class SettingsPage implements OnInit {
 
-  constructor(private ruInfo: RuInfoService,
+  constructor(private virtusService: VirtusService,
               public toastController: ToastController) { }
 
   ngOnInit() {
   }
 
   clearVirtusData() {
-    this.ruInfo.clearVirtusData();
+    this.virtusService.clearVirtusData();
     this.presentVirtusDataClearedToast();
     setTimeout(() => {
     document.location.assign('/home');
       },
-      2000);
+      3000);
     }
 
   async presentVirtusDataClearedToast() {

@@ -1,6 +1,6 @@
 {
   "name": "rusbe-client",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "author": "Erick Almeida",
   "homepage": "https://rusbe.riso.dev/",
   "license": "MIT",
@@ -28,8 +28,10 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.8.0",
     "@ionic/storage": "^2.2.0",
+    "@types/moment-timezone": "^0.5.12",
     "core-js": "^2.5.4",
     "moment": "^2.24.0",
+    "moment-timezone": "^0.5.26",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

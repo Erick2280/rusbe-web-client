@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Storage } from '@ionic/storage';
-import * as environment from './environment.json';
-import * as moment from 'moment';
+import * as moment from 'moment-timezone';
 import 'moment/locale/pt-br';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class RuInfoService {
+export class TimeService {
 
-  constructor(private http: HttpClient, private storage: Storage) { }
+  constructor() { }
 
   getTimeData() {
+    moment.tz.setDefault('America/Recife');
     let isOpen = false;
     let expectedOperation = 'none';
     let nextMeaningfulEvent: any = 'none';
@@ -77,40 +76,5 @@ export class RuInfoService {
     };
     return data;
   }
-
-  getVirtusData(timeData: any) {
-    // verifica se há dado na api, se houver ele mostra disponibilidade, se não, se for dia da semana ele diz que está disponível
-    // verifica se o servidor não está retornando um dado vazio
-    return new Promise(resolve => {
-
-      const today = timeData.day;
-
-      this.storage.get('virtusData').then((virtusData) => {
-        if (virtusData === null || virtusData.lastUpdate !== today) {
-            const dayToGet = today.replace(/\//ig, '%2F');
-
-            this.http.get(`${environment.virtusApiUrl}?data=${dayToGet}`).subscribe(data => {
-              const lastUpdate = 'lastUpdate';
-              data[lastUpdate] = today;
-              console.log('virtus status determined using api');
-              console.log(data);
-              this.storage.set('virtusData', data).then(() => {
-                console.log('virtus status saved');
-                resolve(data);
-              });
-            });
-        } else {
-          console.log('virtus data retrieved from local db');
-          resolve(virtusData);
-        }
-      });
-    });
-  }
-
-  clearVirtusData() {
-    this.storage.remove('virtusData');
-    console.log('virtus data cleared');
-  }
-
 
 }

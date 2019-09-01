@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RuInfoService } from '../ru-info.service';
+import { TimeService } from '../time.service';
+import { VirtusService } from '../virtus.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,7 +10,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HomePage implements OnInit {
 
-  constructor(private ruInfo: RuInfoService,
+  constructor(private timeService: TimeService,
+              private virtusService: VirtusService,
               private router: Router,
               private route: ActivatedRoute) {}
 
@@ -29,22 +31,14 @@ export class HomePage implements OnInit {
   slideOpts: any;
 
   ngOnInit() {
-    this.timeData = this.ruInfo.getTimeData();
-    this.timeDataLoaded = true;
+    this.updateTimeData();
     this.determineSlideOpts();
-    console.log(this.timeData);
-    this.ruInfo.getVirtusData(this.ruInfo.getTimeData()).then((data) => {
-    this.virtusData = data;
-    console.log('front received virtus data');
-    if (this.virtusData.data !== null) {
-      this.virtusData.data.desjejumParsed = this.virtusData.data.desjejum.split(',');
-      this.virtusData.data.almocoParsed = this.virtusData.data.almoco.split(',');
-      this.virtusData.data.jantarParsed = this.virtusData.data.jantar.split(',');
-      this.virtusDataLoaded = true;
-    }
-    console.log(this.virtusData);
+    this.updateVirtusData();
+  }
 
-    });
+  updateTimeData() {
+    this.timeData = this.timeService.getTimeData();
+    this.timeDataLoaded = true;
   }
 
   determineSlideOpts() {
@@ -55,6 +49,14 @@ export class HomePage implements OnInit {
     } else {
       this.slideOpts = { initialSlide: 0};
     }
+  }
+
+  updateVirtusData() {
+    this.virtusService.getVirtusData(this.timeData).then((data) => {
+      this.virtusData = data;
+      this.virtusDataLoaded = true;
+    });
+
   }
 
 }
