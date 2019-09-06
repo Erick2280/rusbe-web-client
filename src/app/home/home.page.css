@@ -40,3 +40,8 @@ strong {
   width: 100%;
   margin-bottom: 32px;
 }
+
+.profile-picture{
+  max-width: 20%;
+  max-height: 20%;
+}

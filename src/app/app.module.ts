@@ -12,6 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import * as ProtectedEnvironment from './environment.json';
+
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
 
 
 @NgModule({
@@ -22,7 +27,11 @@ import { environment } from '../environments/environment';
             IonicStorageModule.forRoot(),
             AppRoutingModule,
             HttpClientModule,
-            ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
+            ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+            AngularFireModule.initializeApp(ProtectedEnvironment.firebase),
+            AngularFirestoreModule,
+            AngularFireAuthModule,
+  ],
   providers: [
     StatusBar,
     SplashScreen,
