@@ -100,7 +100,6 @@ export class RuInfoService {
               });
             });
         } else {
-          console.log('virtus data retrieved from local db');
           resolve(virtusData);
         }
       });
