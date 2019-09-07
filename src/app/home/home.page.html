@@ -1,184 +1,184 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      <ion-img class="header-logo" src="/assets/light-logo.svg" alt="Rusbé"></ion-img>
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="login()" *ngIf="!firebaseDataLoaded.user.logged" routerDirection="forward">
-          <ion-icon slot="icon-only" name="contact"></ion-icon>
-      </ion-button>
-      <ion-button (click)="logout()" *ngIf="firebaseDataLoaded.user.logged">
-        <img class="profile-picture" src="{{ firebaseDataLoaded.user.photoUrl }}">
-      </ion-button>
-      <ion-button routerLink="/settings" routerDirection="forward">
-        <ion-icon slot="icon-only" name="settings"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-title>
+            <ion-img class="header-logo" src="/assets/light-logo.svg" alt="Rusbé"></ion-img>
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="login()" *ngIf="!firebaseDataLoaded.user.logged" routerDirection="forward">
+                <ion-icon slot="icon-only" name="contact"></ion-icon>
+            </ion-button>
+            <ion-button (click)="logout()" *ngIf="firebaseDataLoaded.user.logged">
+                <img class="profile-picture" src="{{ firebaseDataLoaded.user.photoUrl }}">
+            </ion-button>
+            <ion-button routerLink="/settings" routerDirection="forward">
+                <ion-icon slot="icon-only" name="settings"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div class="ion-padding top-hero">
-    <div *ngIf="!timeDataLoaded">
-      <h2>
-        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-      </h2>
-      <p>
-        <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
-        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-      </p>
-    </div>  
-    
-    <div *ngIf="timeDataLoaded">
-      <h2 *ngIf="!firebaseDataLoaded.user.logged">
-        Olá!
-      </h2>
-      <h2 *ngIf="firebaseDataLoaded.user.logged">
-        Olá, {{firebaseDataLoaded.user.name}}!
-      </h2>
+    <div class="ion-padding top-hero">
+        <div *ngIf="!timeDataLoaded">
+            <h2>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+            </h2>
+            <p>
+                <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+            </p>
+        </div>
 
-      <p>Hoje, <strong>{{ timeData.weekday }}, {{ timeData.daySentence }}</strong>, o RU <span *ngIf="timeData.operates">opera para <strong>desjejum, almoço e jantar</strong> e está <strong *ngIf="timeData.isOpen">aberto agora</strong><strong *ngIf="!timeData.isOpen">fechado agora</strong><strong *ngIf="timeData.nextMeaningfulEvent !== 'none'"> até às {{ timeData.nextMeaningfulEvent.format('LT').replace(":","h") }}</strong></span><span *ngIf="!timeData.operates">não opera</span>.</p>
-      <ion-chip class="red-chip" *ngIf="!timeData.operates">
-        <ion-icon color="white" name="remove-circle"></ion-icon>
-        <h2 *ngIf="!firebaseDataLoaded.user.logged">
-        Olá!
-      </h2>
-        <h2 *ngIf="firebaseDataLoaded.user.logged">
-          Olá, {{firebaseDataLoaded.user.name}}!
-        </h2>
-        <ion-label>Não opera hoje</ion-label>
-      </ion-chip>
-      <ion-chip class="blue-chip" *ngIf="timeData.isOpen">
-        <ion-icon color="white" name="checkmark-circle"></ion-icon>
-        <ion-label>Aberto agora</ion-label>
-      </ion-chip>
-      <ion-chip class="red-chip" *ngIf="timeData.operates && !timeData.isOpen">
-        <ion-icon color="white" name="close-circle"></ion-icon>
-        <ion-label>Fechado agora</ion-label>
-      </ion-chip>
-      <ion-chip class="yellow-chip" *ngIf="timeData.operates && timeData.isOpen">
-        <ion-icon color="black" name="timer"></ion-icon>
-        <ion-label>Fecha {{ timeData.timeUntilNextMeaningfulEvent }}</ion-label>
-      </ion-chip>
-      <ion-chip class="yellow-chip" *ngIf="timeData.operates && !timeData.isOpen">
-        <ion-icon color="black" name="hourglass"></ion-icon>
-        <ion-label>Abre {{ timeData.timeUntilNextMeaningfulEvent }}</ion-label>
-      </ion-chip>
-      <ion-chip class="blue-chip" *ngIf="timeData.isOpen && timeData.expectedOperation == 'desjejum'">
-        <ion-icon color="white" name="cafe"></ion-icon>
-        <ion-label>Desjejum</ion-label>
-      </ion-chip>
-      <ion-chip class="blue-chip" *ngIf="timeData.isOpen && timeData.expectedOperation == 'almoco'">
-        <ion-icon color="white" name="restaurant"></ion-icon>
-        <ion-label>Almoço</ion-label>
-      </ion-chip>
-      <ion-chip class="blue-chip" *ngIf="timeData.isOpen && timeData.expectedOperation == 'jantar'">
-        <ion-icon color="white" name="moon"></ion-icon>
-        <ion-label>Jantar</ion-label>
-      </ion-chip>
-      
+        <div *ngIf="timeDataLoaded">
+            <h2 *ngIf="!firebaseDataLoaded.user.logged">
+                Olá!
+            </h2>
+            <h2 *ngIf="firebaseDataLoaded.user.logged">
+                Olá, {{firebaseDataLoaded.user.name}}!
+            </h2>
+
+            <p>Hoje, <strong>{{ timeData.weekday }}, {{ timeData.daySentence }}</strong>, o RU <span *ngIf="timeData.operates">opera para <strong>desjejum, almoço e jantar</strong> e está <strong *ngIf="timeData.isOpen">aberto agora</strong><strong *ngIf="!timeData.isOpen">fechado agora</strong><strong *ngIf="timeData.nextMeaningfulEvent !== 'none'"> até às {{ timeData.nextMeaningfulEvent.format('LT').replace(":","h") }}</strong></span><span *ngIf="!timeData.operates">não opera</span>.</p>
+            <ion-chip class="red-chip" *ngIf="!timeData.operates">
+                <ion-icon color="white" name="remove-circle"></ion-icon>
+                <h2 *ngIf="!firebaseDataLoaded.user.logged">
+                    Olá!
+                </h2>
+                <h2 *ngIf="firebaseDataLoaded.user.logged">
+                    Olá, {{firebaseDataLoaded.user.name}}!
+                </h2>
+                <ion-label>Não opera hoje</ion-label>
+            </ion-chip>
+            <ion-chip class="blue-chip" *ngIf="timeData.isOpen">
+                <ion-icon color="white" name="checkmark-circle"></ion-icon>
+                <ion-label>Aberto agora</ion-label>
+            </ion-chip>
+            <ion-chip class="red-chip" *ngIf="timeData.operates && !timeData.isOpen">
+                <ion-icon color="white" name="close-circle"></ion-icon>
+                <ion-label>Fechado agora</ion-label>
+            </ion-chip>
+            <ion-chip class="yellow-chip" *ngIf="timeData.operates && timeData.isOpen">
+                <ion-icon color="black" name="timer"></ion-icon>
+                <ion-label>Fecha {{ timeData.timeUntilNextMeaningfulEvent }}</ion-label>
+            </ion-chip>
+            <ion-chip class="yellow-chip" *ngIf="timeData.operates && !timeData.isOpen">
+                <ion-icon color="black" name="hourglass"></ion-icon>
+                <ion-label>Abre {{ timeData.timeUntilNextMeaningfulEvent }}</ion-label>
+            </ion-chip>
+            <ion-chip class="blue-chip" *ngIf="timeData.isOpen && timeData.expectedOperation == 'desjejum'">
+                <ion-icon color="white" name="cafe"></ion-icon>
+                <ion-label>Desjejum</ion-label>
+            </ion-chip>
+            <ion-chip class="blue-chip" *ngIf="timeData.isOpen && timeData.expectedOperation == 'almoco'">
+                <ion-icon color="white" name="restaurant"></ion-icon>
+                <ion-label>Almoço</ion-label>
+            </ion-chip>
+            <ion-chip class="blue-chip" *ngIf="timeData.isOpen && timeData.expectedOperation == 'jantar'">
+                <ion-icon color="white" name="moon"></ion-icon>
+                <ion-label>Jantar</ion-label>
+            </ion-chip>
+
+        </div>
+
     </div>
-    
-  </div>
 
-  <!--
-  <ion-item *ngIf="hiddenResource">
-    <ion-label>Status atual</ion-label>
-    <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Selecione um">
-      <ion-select-option value="not">🔴 Não irei</ion-select-option>
-      <ion-select-option value="maybe">🟡 Talvez irei</ion-select-option>
-      <ion-select-option value="will">🟢 Irei</ion-select-option>
-      <ion-select-option value="queue">🙄 Na fila</ion-select-option>
-      <ion-select-option value="inside">🍽 Estou</ion-select-option>
-      <ion-select-option value="went">✅ Já fui</ion-select-option>
-    </ion-select>
-  </ion-item>
-  -->
+    <!--
+    <ion-item *ngIf="hiddenResource">
+      <ion-label>Status atual</ion-label>
+      <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Selecione um">
+        <ion-select-option value="not">🔴 Não irei</ion-select-option>
+        <ion-select-option value="maybe">🟡 Talvez irei</ion-select-option>
+        <ion-select-option value="will">🟢 Irei</ion-select-option>
+        <ion-select-option value="queue">🙄 Na fila</ion-select-option>
+        <ion-select-option value="inside">🍽 Estou</ion-select-option>
+        <ion-select-option value="went">✅ Já fui</ion-select-option>
+      </ion-select>
+    </ion-item>
+    -->
 
-  <div *ngIf="timeData.operates">
-    <ion-img class="today-logo" padding src="/assets/today-at-ru.svg" alt="Hoje no RU"></ion-img>
-    
-    <ion-slides pager="true" [options]="slideOpts">
-      
-      <ion-slide>
-        <ion-card class="today-card">
-          <ion-card-header>
-            <ion-card-subtitle>{{ timeData.day }}</ion-card-subtitle>
-            <ion-card-title>Desjejum</ion-card-title>
-          </ion-card-header>  
-          
-          <ion-card-content>
-            <div *ngIf="!virtusDataLoaded">
-              <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
-              <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
-              <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-            </div>
-            <ion-list>
-              <ion-item *ngFor="let item of virtusData.data.desjejumParsed">
-                <ion-label>{{ item }}</ion-label>
-              </ion-item>
-            </ion-list>
-            
-          </ion-card-content>
-          
-        </ion-card>
-      </ion-slide>
-      
-      <ion-slide>
-          <ion-card class="today-card">
-              <ion-card-header>
-                <ion-card-subtitle>{{ timeData.day }}</ion-card-subtitle>
-                <ion-card-title>Almoço</ion-card-title>
-              </ion-card-header>  
-              
-              <ion-card-content>
-                <div *ngIf="!virtusDataLoaded">
-                  <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
-                  <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
-                  <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-                </div>
-                <ion-list>
-                  <ion-item *ngFor="let item of virtusData.data.almocoParsed">
-                    <ion-label>{{ item }}</ion-label>
-                  </ion-item>
-                </ion-list>
-                
-              </ion-card-content>
-              
-            </ion-card>
-      </ion-slide>
-      
-      <ion-slide>
-          <ion-card class="today-card">
-              <ion-card-header>
-                <ion-card-subtitle>{{ timeData.day }}</ion-card-subtitle>
-                <ion-card-title>Jantar</ion-card-title>
-              </ion-card-header>  
-              
-              <ion-card-content>
-                <div *ngIf="!virtusDataLoaded">
-                  <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
-                  <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
-                  <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-                </div>
-                <ion-list>
-                  <ion-item *ngFor="let item of virtusData.data.jantarParsed">
-                    <ion-label>{{ item }}</ion-label>
-                  </ion-item>
-                </ion-list>
-                
-              </ion-card-content>
-              
-            </ion-card>
-      </ion-slide>
-      
-    </ion-slides>
-    
-  </div>
-  
-  <ion-card *ngIf="hiddenResource">
-    <ion-card-header>
-      <ion-card-title>neighborRUd</ion-card-title>
-    </ion-card-header>  
-  </ion-card>
-  
+    <div *ngIf="timeData.operates">
+        <ion-img class="today-logo" padding src="/assets/today-at-ru.svg" alt="Hoje no RU"></ion-img>
+
+        <ion-slides pager="true" [options]="slideOpts">
+
+            <ion-slide>
+                <ion-card class="today-card">
+                    <ion-card-header>
+                        <ion-card-subtitle>{{ timeData.day }}</ion-card-subtitle>
+                        <ion-card-title>Desjejum</ion-card-title>
+                    </ion-card-header>
+
+                    <ion-card-content>
+                        <div *ngIf="!virtusDataLoaded">
+                            <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </div>
+                        <ion-list>
+                            <ion-item *ngFor="let item of virtusData.data.desjejumParsed">
+                                <ion-label>{{ item }}</ion-label>
+                            </ion-item>
+                        </ion-list>
+
+                    </ion-card-content>
+
+                </ion-card>
+            </ion-slide>
+
+            <ion-slide>
+                <ion-card class="today-card">
+                    <ion-card-header>
+                        <ion-card-subtitle>{{ timeData.day }}</ion-card-subtitle>
+                        <ion-card-title>Almoço</ion-card-title>
+                    </ion-card-header>
+
+                    <ion-card-content>
+                        <div *ngIf="!virtusDataLoaded">
+                            <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </div>
+                        <ion-list>
+                            <ion-item *ngFor="let item of virtusData.data.almocoParsed">
+                                <ion-label>{{ item }}</ion-label>
+                            </ion-item>
+                        </ion-list>
+
+                    </ion-card-content>
+
+                </ion-card>
+            </ion-slide>
+
+            <ion-slide>
+                <ion-card class="today-card">
+                    <ion-card-header>
+                        <ion-card-subtitle>{{ timeData.day }}</ion-card-subtitle>
+                        <ion-card-title>Jantar</ion-card-title>
+                    </ion-card-header>
+
+                    <ion-card-content>
+                        <div *ngIf="!virtusDataLoaded">
+                            <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                        </div>
+                        <ion-list>
+                            <ion-item *ngFor="let item of virtusData.data.jantarParsed">
+                                <ion-label>{{ item }}</ion-label>
+                            </ion-item>
+                        </ion-list>
+
+                    </ion-card-content>
+
+                </ion-card>
+            </ion-slide>
+
+        </ion-slides>
+
+    </div>
+
+    <ion-card *ngIf="hiddenResource">
+        <ion-card-header>
+            <ion-card-title>neighborRUd</ion-card-title>
+        </ion-card-header>
+    </ion-card>
+
 </ion-content>
