@@ -40,3 +40,8 @@ strong {
     width: 100%;
     margin-bottom: 32px;
 }
+
+ion-refresher-content {
+    --color: var(--ion-color-primary);
+    --ion-text-color: var(--ion-color-primary);
+}

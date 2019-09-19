@@ -11,6 +11,10 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refreshData($event)" [style.color]="'#EF3B51'">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
   <div class="ion-padding top-hero">
     <div *ngIf="!timeDataLoaded">
       <h2>

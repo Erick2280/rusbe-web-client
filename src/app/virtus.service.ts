@@ -28,6 +28,8 @@ export class VirtusService {
                 newVirtusData.data.desjejumParsed = newVirtusData.data.desjejum.split(',');
                 newVirtusData.data.almocoParsed = newVirtusData.data.almoco.split(',');
                 newVirtusData.data.jantarParsed = newVirtusData.data.jantar.split(',');
+              } else {
+                throw new Error('receivedNullDataFromVirtus');
               }
               newVirtusData.lastUpdate = today;
               this.storage.set('virtusData', newVirtusData).then(() => {
