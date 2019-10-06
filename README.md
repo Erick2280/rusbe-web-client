@@ -32,6 +32,8 @@ Crie um arquivo `environment.json` no diretório `/src/app/`, com as seguintes i
 - `VIRTUS-API-URL`: URL da API do Virtus pela qual o Rusbé irá se conectar. A API da UFPE pode ser encontrada em `https://virtus.ufpe.br/api/v1.0/cardapio/dia`, mas esta não funciona a não ser que o CORS esteja desabilitado no navegador.
 - `FIREBASE-CONFIG`: Objeto de configuração do Firebase a ser utilizado, disponível nas configurações do projeto do Firebase. 
 
+O projeto envia dados automaticamente para a conta do Google Analytics de @Erick2280. Para desativar esse comportamento, apague as linhas relacionadas ao Google Analytics em `/app/index.html`.
+
 ### Executando no navegador
 
 Dentro da pasta raiz do repositório, execute:
