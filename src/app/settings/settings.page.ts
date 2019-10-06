@@ -15,6 +15,7 @@ export class SettingsPage implements OnInit {
               public toastController: ToastController) { }
 
   firebaseLoggedIn = false;
+  firebaseLoggingIn = false;
   firebaseUserData: any;
 
 
@@ -28,9 +29,14 @@ export class SettingsPage implements OnInit {
   }
 
   doLogin() {
+      this.firebaseLoggingIn = true;
       this.firebaseService.doLogin().then(data => {
+        this.firebaseLoggingIn = false;
         this.firebaseLoggedIn = true;
         this.firebaseUserData = data;
+      }).catch(err => {
+        this.firebaseLoggingIn = false;
+        this.presentLoginErrorToast();
       });
   }
 
@@ -48,6 +54,16 @@ export class SettingsPage implements OnInit {
     document.location.assign('/home');
       },
       3000);
+    }
+
+    async presentLoginErrorToast() {
+      const toast = await this.toastController.create({
+        message: 'Infelizmente, ocorreu um erro ao tentar realizar login. Por favor, tente novamente.',
+        showCloseButton: true,
+        position: 'bottom',
+        closeButtonText: 'OK'
+      });
+      toast.present();
     }
 
     async presentLogoutToast() {

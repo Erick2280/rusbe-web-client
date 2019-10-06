@@ -45,3 +45,19 @@ ion-refresher-content {
   --color: var(--ion-color-primary);
   --ion-text-color: var(--ion-color-primary);
 }
+
+.skeleton-60 {
+  width: 60%;
+}
+
+.skeleton-70 {
+  width: 70%;
+}
+
+.skeleton-88 {
+  width: 88%;
+}
+
+.skeleton-90 {
+  width: 90%;
+}

@@ -16,7 +16,14 @@
             <ion-card-title>Conta Rusbé</ion-card-title>
         </ion-card-header>
 
-        <div *ngIf="firebaseLoggedIn">
+        <div *ngIf="firebaseLoggingIn">
+            <ion-item lines="none">
+                <ion-label>Fazendo login...</ion-label>
+                <ion-spinner color="primary"></ion-spinner>
+            </ion-item>
+        </div>
+
+        <div *ngIf="firebaseLoggedIn && !firebaseLoggingIn">
 
             <ion-item lines="none">
                 <ion-avatar slot="start">
@@ -31,7 +38,7 @@
     
         </div>
 
-        <div *ngIf="!firebaseLoggedIn">
+        <div *ngIf="!firebaseLoggedIn && !firebaseLoggingIn">
 
         <ion-item lines="none">
             <ion-avatar slot="start">
@@ -55,7 +62,7 @@
       <ion-list>
         <ion-item button (click)="clearVirtusData()" lines="none" detail>
           <ion-icon name="trash" slot="start"></ion-icon>
-          <ion-label>Limpar dados da API do RU</ion-label>
+          <ion-label text-wrap>Limpar dados da API do RU</ion-label>
         </ion-item>
       </ion-list>
   </ion-card>
@@ -63,7 +70,7 @@
       <ion-card>
           <ion-card-header>
               <ion-card-title>Sobre</ion-card-title>
-              <ion-card-subtitle>Rusbé 1.1.0</ion-card-subtitle>
+              <ion-card-subtitle>Rusbé 1.1.1</ion-card-subtitle>
             </ion-card-header>
 
             <ion-card-content>
@@ -74,7 +81,7 @@
           <ion-list>
           <ion-item lines="none" href="https://github.com/erick2280/rusbe-web-client" detail>
             <ion-icon name="logo-github" slot="start"></ion-icon>
-            <ion-label>Código-fonte no Github</ion-label>
+            <ion-label text-wrap>Código-fonte no Github</ion-label>
           </ion-item>
           </ion-list>
         </ion-card>

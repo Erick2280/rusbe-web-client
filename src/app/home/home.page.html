@@ -3,23 +3,14 @@
     <ion-title>
       <ion-img class="header-logo" src="/assets/light-logo.svg" alt="Rusbé"></ion-img>
     </ion-title>
+
     <ion-buttons slot="end">
-      <ion-button routerLink="/settings" routerDirection="forward">
-        <ion-icon slot="icon-only" name="settings"></ion-icon>
-      </ion-button>
-
-      <ion-chip class="red-chip" *ngIf="firebaseLoggedIn" routerLink="/settings" routerDirection="forward">
+      <ion-chip class="red-chip" routerLink="/settings" routerDirection="forward">
         <ion-avatar>
-          <img [src]="firebaseUserData.photoUrl">
+          <img *ngIf="!firebaseLoggedIn" src="../../assets/anonymous-user.svg">
+          <img *ngIf="firebaseLoggedIn" [src]="firebaseUserData.photoUrl">
         </ion-avatar>
-        <ion-label>Sua conta</ion-label>
-      </ion-chip>
-
-      <ion-chip class="red-chip" *ngIf="!firebaseLoggedIn" routerLink="/settings" routerDirection="forward">
-        <ion-avatar>
-          <img src="../../assets/anonymous-user.svg">
-        </ion-avatar>
-        <ion-label>Fazer login</ion-label>
+        <ion-label><ion-icon size="small" slot="icon-only" name="settings"></ion-icon></ion-label>
       </ion-chip>
 
     </ion-buttons>
@@ -34,11 +25,11 @@
   <div class="ion-padding top-hero">
     <div *ngIf="!timeDataLoaded">
       <h2>
-        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        <ion-skeleton-text animated class="skeleton-60"></ion-skeleton-text>
       </h2>
       <p>
-        <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
-        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        <ion-skeleton-text animated class="skeleton-90"></ion-skeleton-text>
+        <ion-skeleton-text animated class="skeleton-60"></ion-skeleton-text>
       </p>
     </div>  
     <div *ngIf="timeDataLoaded">
@@ -52,35 +43,35 @@
       <p>Hoje, <strong>{{ timeData.weekday }}, {{ timeData.daySentence }}</strong>, o RU <span *ngIf="timeData.operates">opera para <strong>desjejum, almoço e jantar</strong> e está <strong *ngIf="timeData.isOpen">aberto agora</strong><strong *ngIf="!timeData.isOpen">fechado agora</strong><strong *ngIf="timeData.nextMeaningfulEvent !== 'none'"> até às {{ timeData.nextMeaningfulEvent.format('LT').replace(":","h") }}</strong></span><span *ngIf="!timeData.operates">não opera</span>.</p>
       
       <ion-chip class="red-chip" *ngIf="!timeData.operates">
-        <ion-icon color="white" name="remove-circle"></ion-icon>
+        <ion-icon aria-hidden="true" color="white" name="remove-circle"></ion-icon>
         <ion-label>Não opera hoje</ion-label>
       </ion-chip>
       <ion-chip class="blue-chip" *ngIf="timeData.isOpen">
-        <ion-icon color="white" name="checkmark-circle"></ion-icon>
+        <ion-icon aria-hidden="true" color="white" name="checkmark-circle"></ion-icon>
         <ion-label>Aberto agora</ion-label>
       </ion-chip>
       <ion-chip class="red-chip" *ngIf="timeData.operates && !timeData.isOpen">
-        <ion-icon color="white" name="close-circle"></ion-icon>
+        <ion-icon aria-hidden="true" color="white" name="close-circle"></ion-icon>
         <ion-label>Fechado agora</ion-label>
       </ion-chip>
       <ion-chip class="yellow-chip" *ngIf="timeData.operates && timeData.isOpen">
-        <ion-icon color="black" name="timer"></ion-icon>
+        <ion-icon aria-hidden="true" color="black" name="timer"></ion-icon>
         <ion-label>Fecha {{ timeData.timeUntilNextMeaningfulEvent }}</ion-label>
       </ion-chip>
       <ion-chip class="yellow-chip" *ngIf="timeData.operates && timeData.expectedOperation !== 'none' && !timeData.isOpen">
-        <ion-icon color="black" name="hourglass"></ion-icon>
+        <ion-icon aria-hidden="true" color="black" name="hourglass"></ion-icon>
         <ion-label>Abre {{ timeData.timeUntilNextMeaningfulEvent }}</ion-label>
       </ion-chip>
       <ion-chip class="blue-chip" *ngIf="timeData.isOpen && timeData.expectedOperation == 'desjejum'">
-        <ion-icon color="white" name="cafe"></ion-icon>
+        <ion-icon aria-hidden="true" color="white" name="cafe"></ion-icon>
         <ion-label>Desjejum</ion-label>
       </ion-chip>
       <ion-chip class="blue-chip" *ngIf="timeData.isOpen && timeData.expectedOperation == 'almoco'">
-        <ion-icon color="white" name="restaurant"></ion-icon>
+        <ion-icon aria-hidden="true" color="white" name="restaurant"></ion-icon>
         <ion-label>Almoço</ion-label>
       </ion-chip>
       <ion-chip class="blue-chip" *ngIf="timeData.isOpen && timeData.expectedOperation == 'jantar'">
-        <ion-icon color="white" name="moon"></ion-icon>
+        <ion-icon aria-hidden="true" color="white" name="moon"></ion-icon>
         <ion-label>Jantar</ion-label>
       </ion-chip>
       
@@ -116,9 +107,9 @@
           
           <ion-card-content>
             <div *ngIf="!virtusDataLoaded">
-              <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
-              <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
-              <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              <ion-skeleton-text animated class="skeleton-88"></ion-skeleton-text>
+              <ion-skeleton-text animated class="skeleton-70"></ion-skeleton-text>
+              <ion-skeleton-text animated class="skeleton-60"></ion-skeleton-text>
             </div>
             <ion-list>
               <ion-item *ngFor="let item of virtusData.data.desjejumParsed">
@@ -140,9 +131,9 @@
               
               <ion-card-content>
                 <div *ngIf="!virtusDataLoaded">
-                  <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
-                  <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
-                  <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                  <ion-skeleton-text animated class="skeleton-88"></ion-skeleton-text>
+                  <ion-skeleton-text animated class="skeleton-70"></ion-skeleton-text>
+                  <ion-skeleton-text animated class="skeleton-60"></ion-skeleton-text>
                 </div>
                 <ion-list>
                   <ion-item *ngFor="let item of virtusData.data.almocoParsed">
@@ -164,9 +155,9 @@
               
               <ion-card-content>
                 <div *ngIf="!virtusDataLoaded">
-                  <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
-                  <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
-                  <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                  <ion-skeleton-text animated class="skeleton-88"></ion-skeleton-text>
+                  <ion-skeleton-text animated class="skeleton-70"></ion-skeleton-text>
+                  <ion-skeleton-text animated class="skeleton-60"></ion-skeleton-text>
                 </div>
                 <ion-list>
                   <ion-item *ngFor="let item of virtusData.data.jantarParsed">

@@ -90,8 +90,14 @@ export class HomePage implements OnInit {
 
   refreshData(event) {
     this.virtusService.clearVirtusData();
-    this.updateVirtusData();
-    event.target.complete();
+    this.virtusService.getVirtusData(this.timeData).then((data) => {
+      this.virtusData = data;
+      this.virtusDataLoaded = true;
+      event.target.complete();
+    }).catch((err) => {
+        this.displayErrorToast('Infelizmente, ocorreu um erro ao tentar atualizar os dados. Puxe para baixo para tentar novamente.');
+        event.target.complete();
+    });
   }
 
 }
