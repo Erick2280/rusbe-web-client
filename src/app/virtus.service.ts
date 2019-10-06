@@ -13,7 +13,7 @@ export class VirtusService {
   getVirtusData(timeData: any) {
     // TODO: Pegar informação da semana toda, e verificar se existe a informação do dia no pack da semana
     // Sensibilizar a mudanças depois de estar salvo na db
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
 
       const today = timeData.day;
 
@@ -29,7 +29,10 @@ export class VirtusService {
                 newVirtusData.data.almocoParsed = newVirtusData.data.almoco.split(',');
                 newVirtusData.data.jantarParsed = newVirtusData.data.jantar.split(',');
               } else {
-                throw new Error('receivedNullDataFromVirtus');
+                if (timeData.operates) {
+                  reject(new Error('receivedNullDataFromVirtus'));
+                  return;
+                }
               }
               newVirtusData.lastUpdate = today;
               this.storage.set('virtusData', newVirtusData).then(() => {
@@ -42,6 +45,40 @@ export class VirtusService {
       });
     });
   }
+
+  /*
+  updateVirtusData(timeData: any) {
+    // separar as lógicas comuns ao get e ao update para reutilizar código
+    return new Promise(resolve => {
+
+      const today = timeData.day;
+      const dayToGet = today.replace(/\//ig, '%2F');
+
+      this.http.get(`${environment.virtusApiUrl}?data=${dayToGet}`).subscribe(data => {
+        const newVirtusData: any = data;
+        newVirtusData.lastUpdate = today;
+        if (newVirtusData.data !== null) {
+          newVirtusData.data.desjejumParsed = newVirtusData.data.desjejum.split(',');
+          newVirtusData.data.almocoParsed = newVirtusData.data.almoco.split(',');
+          newVirtusData.data.jantarParsed = newVirtusData.data.jantar.split(',');
+        } else {
+          this.storage.get('virtusData').then((virtusData) => {
+            if (virtusData !== null) {
+              resolve(virtusData);
+            } else {
+              throw new Error('receivedNullDataFromVirtus');
+            }
+          });
+        }
+        newVirtusData.lastUpdate = today;
+        this.storage.set('virtusData', newVirtusData).then(() => {
+          resolve(newVirtusData);
+        });
+      });
+
+    });
+  }
+  */
 
   clearVirtusData() {
     this.storage.remove('virtusData');

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TimeService } from '../time.service';
 import { VirtusService } from '../virtus.service';
+import { FirebaseService } from '../firebase.service';
 import { ToastController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -13,13 +14,15 @@ export class HomePage implements OnInit {
 
   constructor(private timeService: TimeService,
               private virtusService: VirtusService,
+              private firebaseService: FirebaseService,
               private router: Router,
               private route: ActivatedRoute,
               private toastController: ToastController) {}
 
   timeDataLoaded = false;
   virtusDataLoaded = false;
-  firebaseDataLoaded = false;
+  firebaseLoggedIn = false;
+  firebaseUserData: any;
   hiddenResource = false;
   timeData: any;
   virtusData: any = {
@@ -36,6 +39,18 @@ export class HomePage implements OnInit {
     this.updateTimeData();
     this.determineSlideOpts();
     this.updateVirtusData();
+  }
+
+  ionViewWillEnter() {
+    this.firebaseService.getLoginStatus().then((data) => {
+      if (!!data) {
+        this.firebaseLoggedIn = true;
+        this.firebaseUserData = data;
+      } else {
+        this.firebaseLoggedIn = false;
+        this.firebaseUserData = null;
+      }
+    });
   }
 
   updateTimeData() {
@@ -58,11 +73,7 @@ export class HomePage implements OnInit {
       this.virtusData = data;
       this.virtusDataLoaded = true;
     }).catch((err) => {
-      if (err === 'receivedNullDataFromVirtus') {
-        this.displayErrorToast('Infelizmente, o sistema da UFPE não retornou dados. Puxe para baixo para tentar novamente.');
-      } else {
         this.displayErrorToast('Infelizmente, ocorreu um erro ao tentar atualizar os dados. Puxe para baixo para tentar novamente.');
-      }
     });
 
   }
@@ -78,13 +89,9 @@ export class HomePage implements OnInit {
   }
 
   refreshData(event) {
-
-    console.log('Begin async operation');
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
+    this.virtusService.clearVirtusData();
+    this.updateVirtusData();
+    event.target.complete();
   }
 
 }

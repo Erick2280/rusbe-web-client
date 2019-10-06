@@ -10,12 +10,55 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
-        <ion-item>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Conta Rusbé</ion-card-title>
+        </ion-card-header>
+
+        <div *ngIf="firebaseLoggedIn">
+
+            <ion-item lines="none">
+                <ion-avatar slot="start">
+                    <img [src]="firebaseUserData.photoUrl">
+                </ion-avatar>
+                <ion-label>
+                  <h2 text-wrap>{{ firebaseUserData.name }}</h2>
+                  <p text-wrap>{{ firebaseUserData.email }}</p>
+                </ion-label>
+            </ion-item>
+            <ion-button (click)="doLogout()" fill="clear" expand="full"><ion-icon slot="start" name="log-out"></ion-icon>Fazer logout</ion-button>
+    
+        </div>
+
+        <div *ngIf="!firebaseLoggedIn">
+
+        <ion-item lines="none">
+            <ion-avatar slot="start">
+                <img src="../../assets/anonymous-user.svg">
+            </ion-avatar>
+            <ion-label>
+              <h2 text-wrap>Você não está logado :/</h2>
+              <p text-wrap>Para aproveitar tudo que o Rusbé tem a oferecer, faça login com sua conta do Google.</p>
+            </ion-label>
+        </ion-item>
+        <ion-button (click)="doLogin()" fill="clear" expand="full"><ion-icon slot="start" name="logo-google"></ion-icon>Fazer login com Google</ion-button>
+
+        </div>
+
+    </ion-card>
+
+  <ion-card>
+      <ion-card-header>
+          <ion-card-title>Dispositivo</ion-card-title>
+      </ion-card-header>
+      <ion-list>
+        <ion-item button (click)="clearVirtusData()" lines="none" detail>
+          <ion-icon name="trash" slot="start"></ion-icon>
           <ion-label>Limpar dados da API do RU</ion-label>
-          <ion-button fill="outline" slot="end" (click)="clearVirtusData()">Limpar</ion-button>
         </ion-item>
       </ion-list>
+  </ion-card>
 
       <ion-card>
           <ion-card-header>
@@ -28,13 +71,12 @@
               Imagem de capa baseada na imagem por <a href="https://unsplash.com/@thoughtcatalog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ThoughtCatalog</a> no <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>.
           
               </ion-card-content>
-
-          <ion-item>
+          <ion-list>
+          <ion-item lines="none" href="https://github.com/erick2280/rusbe-web-client" detail>
             <ion-icon name="logo-github" slot="start"></ion-icon>
-            <ion-label>Github</ion-label>
-            <ion-button fill="outline" slot="end" href="https://github.com/erick2280/rusbe-web-client">Ver</ion-button>
+            <ion-label>Código-fonte no Github</ion-label>
           </ion-item>
-        
+          </ion-list>
         </ion-card>
 
  </ion-content>

@@ -7,11 +7,27 @@
       <ion-button routerLink="/settings" routerDirection="forward">
         <ion-icon slot="icon-only" name="settings"></ion-icon>
       </ion-button>
+
+      <ion-chip class="red-chip" *ngIf="firebaseLoggedIn" routerLink="/settings" routerDirection="forward">
+        <ion-avatar>
+          <img [src]="firebaseUserData.photoUrl">
+        </ion-avatar>
+        <ion-label>Sua conta</ion-label>
+      </ion-chip>
+
+      <ion-chip class="red-chip" *ngIf="!firebaseLoggedIn" routerLink="/settings" routerDirection="forward">
+        <ion-avatar>
+          <img src="../../assets/anonymous-user.svg">
+        </ion-avatar>
+        <ion-label>Fazer login</ion-label>
+      </ion-chip>
+
     </ion-buttons>
+    
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="refreshData($event)" [style.color]="'#EF3B51'">
+  <ion-refresher slot="fixed" (ionRefresh)="refreshData($event)">
     <ion-refresher-content>
     </ion-refresher-content>
   </ion-refresher>
@@ -25,11 +41,14 @@
         <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
       </p>
     </div>  
-    
     <div *ngIf="timeDataLoaded">
-      <h2>
+      <h2 *ngIf="!firebaseLoggedIn">
         Olá!
       </h2>
+      <h2 *ngIf="firebaseLoggedIn">
+        Olá, {{ firebaseUserData.name }}!
+      </h2>
+
       <p>Hoje, <strong>{{ timeData.weekday }}, {{ timeData.daySentence }}</strong>, o RU <span *ngIf="timeData.operates">opera para <strong>desjejum, almoço e jantar</strong> e está <strong *ngIf="timeData.isOpen">aberto agora</strong><strong *ngIf="!timeData.isOpen">fechado agora</strong><strong *ngIf="timeData.nextMeaningfulEvent !== 'none'"> até às {{ timeData.nextMeaningfulEvent.format('LT').replace(":","h") }}</strong></span><span *ngIf="!timeData.operates">não opera</span>.</p>
       
       <ion-chip class="red-chip" *ngIf="!timeData.operates">
@@ -151,7 +170,7 @@
                 </div>
                 <ion-list>
                   <ion-item *ngFor="let item of virtusData.data.jantarParsed">
-                    <ion-label>{{ item }}</ion-label>
+                    <ion-label text-wrap>{{ item }}</ion-label>
                   </ion-item>
                 </ion-list>
                 

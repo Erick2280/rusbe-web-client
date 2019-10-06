@@ -24,9 +24,13 @@ Crie um arquivo `environment.json` no diretório `/src/app/`, com as seguintes i
 
     {
         "virtusApiUrl": VIRTUS-API-URL 
+        "firebaseConfig": {
+            FIREBASE-CONFIG
+        }
     }
 
 - `VIRTUS-API-URL`: URL da API do Virtus pela qual o Rusbé irá se conectar. A API da UFPE pode ser encontrada em `https://virtus.ufpe.br/api/v1.0/cardapio/dia`, mas esta não funciona a não ser que o CORS esteja desabilitado no navegador.
+- `FIREBASE-CONFIG`: Objeto de configuração do Firebase a ser utilizado, disponível nas configurações do projeto do Firebase. 
 
 ### Executando no navegador
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VirtusService } from '../virtus.service';
+import { FirebaseService } from '../firebase.service';
 import { ToastController } from '@ionic/angular';
 
 @Component({
@@ -10,10 +11,35 @@ import { ToastController } from '@ionic/angular';
 export class SettingsPage implements OnInit {
 
   constructor(private virtusService: VirtusService,
+              private firebaseService: FirebaseService,
               public toastController: ToastController) { }
 
+  firebaseLoggedIn = false;
+  firebaseUserData: any;
+
+
   ngOnInit() {
+    this.firebaseService.getLoginStatus().then((data) => {
+      if (!!data) {
+        this.firebaseLoggedIn = true;
+        this.firebaseUserData = data;
+      }
+    });
   }
+
+  doLogin() {
+      this.firebaseService.doLogin().then(data => {
+        this.firebaseLoggedIn = true;
+        this.firebaseUserData = data;
+      });
+  }
+
+  doLogout() {
+    this.firebaseService.doLogout().then(() => {
+      this.firebaseLoggedIn = false;
+      this.presentLogoutToast();
+    });
+}
 
   clearVirtusData() {
     this.virtusService.clearVirtusData();
@@ -22,6 +48,16 @@ export class SettingsPage implements OnInit {
     document.location.assign('/home');
       },
       3000);
+    }
+
+    async presentLogoutToast() {
+      const toast = await this.toastController.create({
+        message: 'Você foi deslogado do Rusbé com sucesso. Esperamos vê-lo em breve!',
+        showCloseButton: true,
+        position: 'bottom',
+        closeButtonText: 'OK'
+      });
+      toast.present();
     }
 
   async presentVirtusDataClearedToast() {
