@@ -3,6 +3,7 @@
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/erick2280/rusbe-web-client)
 
 O Rusbé é uma plataforma para acompanhamento do Restaurante Universitário da Universidade Federal de Pernambuco.
+_View README in English [here](/README_en-US.md)._
 
 ## Setup
 
