@@ -6,7 +6,7 @@ Rusbé is a follow up platform of the University Restaurant of UFPE.
 
 ## Setup
 
-### Configurando
+### Configuring
 
 Clone the repository for a directory of your preference.
 
