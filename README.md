@@ -5,6 +5,8 @@
 O Rusbé é uma plataforma para acompanhamento do Restaurante Universitário da Universidade Federal de Pernambuco.
 _View README in English [here](/README_en-US.md)._
 
+_Ver README en español [aquí](/README_es-AR.md)._
+
 ## Setup
 
 ### Configurando
